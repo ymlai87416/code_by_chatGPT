@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>XHR Example</title>
+</head>
+<body onload="testLoad()">
+  <h1>XHR Example</h1>
+
+  <div id="data"></div>
+
+  <script>
+
+    function testLoad(){
+      // Create a new XHR object
+      var xhr = new XMLHttpRequest();
+
+      // Open a GET request to the server
+      xhr.open('GET', 'https://catfact.ninja/fact');
+
+      // Set the callback for when the request is complete
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          // If the request was successful, display the data in the page
+          document.getElementById('data').innerHTML = xhr.responseText;
+        } else {
+          // If the request was unsuccessful, display an error message
+          document.getElementById('data').innerHTML = 'An error occurred: ' + xhr.status;
+        }
+      };
+
+      // Send the request
+      xhr.send();
+    }
+  </script>
+</body>
+</html>
