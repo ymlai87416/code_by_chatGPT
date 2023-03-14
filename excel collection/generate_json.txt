@@ -1,0 +1,40 @@
+Sub GenerateJSON()
+    ' Set up variables and arrays to hold data
+    Dim keyRow As Range
+    Dim valueRow As Range
+    Dim numCols As Integer
+    Dim i As Integer
+    Dim keyArr() As String
+    Dim valueArr() As String
+    Dim jsonStr As String
+    
+    ' Set the key and value rows
+    Set keyRow = Range("A1").EntireRow
+    Set valueRow = Range("A2").EntireRow
+    
+    ' Determine the number of columns
+    numCols = keyRow.Cells.Count
+    
+    ' Resize the arrays to hold the data
+    ReDim keyArr(1 To numCols)
+    ReDim valueArr(1 To numCols)
+    
+    ' Fill the arrays with the data from the rows
+    For i = 1 To numCols
+        keyArr(i) = keyRow.Cells(i).Value
+        valueArr(i) = valueRow.Cells(i).Value
+    Next i
+    
+    ' Build the JSON string
+    jsonStr = "{"
+    For i = 1 To numCols
+        jsonStr = jsonStr & Chr(34) & keyArr(i) & Chr(34) & ":" & Chr(34) & valueArr(i) & Chr(34)
+        If i < numCols Then
+            jsonStr = jsonStr & ","
+        End If
+    Next i
+    jsonStr = jsonStr & "}"
+    
+    ' Output the JSON string to the immediate window
+    Debug.Print jsonStr
+End Sub
