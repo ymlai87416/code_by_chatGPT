@@ -1,0 +1,22 @@
+Sub GenerateHexString()
+    
+    Dim hexPrefix As String
+    Dim hexString As String
+    Dim hexLength As Integer
+    
+    'Specify the hex prefix and length here
+    hexPrefix = "0x"
+    hexLength = 16
+    
+    'Generate random hex string with the specified length
+    For i = 1 To hexLength - Len(hexPrefix)
+        hexString = hexString & Hex(Int(Rnd() * 16))
+    Next i
+    
+    'Combine the prefix and the random hex string
+    hexString = hexPrefix & hexString
+    
+    'Print the generated hex string to the immediate window
+    Debug.Print hexString
+    
+End Sub
